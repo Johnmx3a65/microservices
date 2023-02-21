@@ -8,3 +8,6 @@
 /dataSources.local.xml
 # Zeppelin ignored files
 /ZeppelinRemoteNotebooks/
+
+/sonarlint
+/whitesource/diff/diff-main.json
