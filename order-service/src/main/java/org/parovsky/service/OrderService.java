@@ -25,7 +25,7 @@ public class OrderService {
 
 	private final OrderRepository orderRepository;
 
-	private final WebClient webClient;
+	private final WebClient.Builder webClientBuilder;
 
 	public void placeOrder(OrderRequest orderRequest) {
 		Order order = new Order();
@@ -43,7 +43,7 @@ public class OrderService {
 				.map(OrderLineItems::getSkuCode)
 				.collect(Collectors.toList());
 
-		InventoryResponse[] inventoryResponses = webClient.get()
+		InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
 				.uri(
 						System.getenv("INVENTORY_SERVICE_DOMAIN") + "/api/inventory",
 						uriBuilder -> uriBuilder.queryParam("sku-code", skuCodes).build()
